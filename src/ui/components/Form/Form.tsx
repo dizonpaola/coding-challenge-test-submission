@@ -9,15 +9,19 @@ interface FormEntry {
   placeholder: string;
   // TODO: Defined a suitable type for extra props
   // This type should cover all different of attribute types
-  extraProps: any;
+  extraProps: React.InputHTMLAttributes<HTMLInputElement>;
 }
 
 interface FormProps {
   label: string;
   loading: boolean;
   formEntries: FormEntry[];
-  onFormSubmit: () => void;
+  onFormSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   submitText: string;
+  clearButton?: {
+    text: string;
+    onClick: () => void;
+  };
 }
 
 const Form: FunctionComponent<FormProps> = ({
@@ -25,7 +29,8 @@ const Form: FunctionComponent<FormProps> = ({
   loading,
   formEntries,
   onFormSubmit,
-  submitText
+  submitText,
+  clearButton
 }) => {
   return (
     <form onSubmit={onFormSubmit}>
@@ -45,6 +50,12 @@ const Form: FunctionComponent<FormProps> = ({
         <Button loading={loading} type="submit">
           {submitText}
         </Button>
+        
+        {clearButton && (
+          <Button variant="secondary" onClick={clearButton.onClick}>
+            {clearButton.text}
+          </Button>
+        )}
       </fieldset>
     </form>
   );
