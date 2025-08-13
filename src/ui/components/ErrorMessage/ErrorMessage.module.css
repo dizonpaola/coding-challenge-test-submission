@@ -1,0 +1,18 @@
+.errorMessage {
+  background-color: #ffebee;
+  border: 1px solid #f44336;
+  border-radius: var(--border-radius-default);
+  color: #c62828;
+  font-size: 0.9em;
+  margin: 1rem 0;
+  padding: 0.75rem 1rem;
+  max-width: var(--width-input);
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .errorMessage {
+    font-size: 0.8em;
+    padding: 0.5rem 0.75rem;
+  }
+}
