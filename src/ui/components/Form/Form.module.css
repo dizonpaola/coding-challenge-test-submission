@@ -1,0 +1,10 @@
+.formRow {
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .formRow {
+    margin-bottom: 0.75rem;
+  }
+}
