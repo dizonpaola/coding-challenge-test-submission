@@ -3,28 +3,28 @@ import React from "react";
 import Address from "@/components/Address/Address";
 import AddressBook from "@/components/AddressBook/AddressBook";
 import Button from "@/components/Button/Button";
+import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
+import Form from "@/components/Form/Form";
 import InputText from "@/components/InputText/InputText";
 import Radio from "@/components/Radio/Radio";
 import Section from "@/components/Section/Section";
 import useAddressBook from "@/hooks/useAddressBook";
+import useFormFields from "@/hooks/useFormFields";
 
 import styles from "./App.module.css";
 import { Address as AddressType } from "./types";
+import transformAddress from "./core/models/address";
 
 function App() {
-  /**
-   * Form fields states
-   * TODO: Write a custom hook to set form fields in a more generic way:
-   * - Hook must expose an onChange handler to be used by all <InputText /> and <Radio /> components
-   * - Hook must expose all text form field values, like so: { postCode: '', houseNumber: '', ...etc }
-   * - Remove all individual React.useState
-   * - Remove all individual onChange handlers, like handlePostCodeChange for example
-   */
-  const [postCode, setPostCode] = React.useState("");
-  const [houseNumber, setHouseNumber] = React.useState("");
-  const [firstName, setFirstName] = React.useState("");
-  const [lastName, setLastName] = React.useState("");
-  const [selectedAddress, setSelectedAddress] = React.useState("");
+   const { fields, onChange, clearFields } = useFormFields({
+    postCode: '',
+    houseNumber: '',
+    firstName: '',
+    lastName: '',
+    selectedAddress: ''
+  });
+
+  const { postCode, houseNumber, firstName, lastName, selectedAddress } = fields;
   /**
    * Results states
    */
